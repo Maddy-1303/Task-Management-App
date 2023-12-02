@@ -26,6 +26,10 @@
     <%= form.text_field :status %>
   </div>
 
+  <%= form.select :visibility, Task.visibilities.keys.map { |k| [k.humanize, k] } %>
+
+  <%= form.hidden_field :user_id %>
+
   <div class="actions">
     <%= form.submit %>
   </div>

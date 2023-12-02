@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
+  load_and_authorize_resource
   before_action :authenticate_user!, except: [:index]
   before_action :set_task, only: %i[ show edit update destroy ]
 
   # GET /tasks or /tasks.json
   def index
-    @tasks = Task.all
+    @public_tasks = Task.publicaly
   end
 
   # GET /tasks/1 or /tasks/1.json
@@ -22,7 +23,8 @@ class TasksController < ApplicationController
 
   # POST /tasks or /tasks.json
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
+
 
     respond_to do |format|
       if @task.save
@@ -66,6 +68,6 @@ class TasksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def task_params
-      params.require(:task).permit(:name, :description, :status)
+      params.require(:task).permit(:name, :description, :status, :visibility, :user_id)
     end
 end
