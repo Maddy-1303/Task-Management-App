@@ -5,8 +5,17 @@ class TasksController < ApplicationController
 
   # GET /tasks or /tasks.json
   def index
-    @public_tasks = Task.publicaly
+    if user_signed_in?
+      # Display all public tasks except the current user's tasks
+      @public_tasks = Task.publicaly.where.not(user_id: current_user.id)
+      @my_tasks = current_user.tasks
+    else
+      # Display only public tasks for guests
+      @public_tasks = Task.publicaly
+    end
   end
+
+
 
   # GET /tasks/1 or /tasks/1.json
   def show

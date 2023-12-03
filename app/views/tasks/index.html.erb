@@ -1,31 +1,63 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Tasks</h1>
+<h1>Public Tasks</h1>
 
 <table>
   <thead>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Status</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @public_tasks.each do |task| %>
+    <tr>
+      <td><%= task.name %></td>
+      <td><%= task.description %></td>
+      <td><%= task.status %></td>
+      <!-- Add links or actions for public tasks as needed -->
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<% if user_signed_in? %>
+  <h1>My Tasks</h1>
+
+  <table>
+    <thead>
     <tr>
       <th>Name</th>
       <th>Description</th>
       <th>Status</th>
+      <th>Visibility</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-    <% @public_tasks.each do |task| %>
+    <tbody>
+    <% @my_tasks.each do |task| %>
       <tr>
         <td><%= task.name %></td>
         <td><%= task.description %></td>
         <td><%= task.status %></td>
+        <td><%= task.visibility %></td>
+
         <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if can? :update, task %>
+          <td><%= link_to 'Edit', edit_task_path(task) %></td>
+        <% end %>
+        <% if can? :destroy, task %>
+          <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+<% end %>
 
-<%= link_to 'New Task', new_task_path %>
+<% if can? :create, Task %>
+  <%= link_to 'New Task', new_task_path %>
+<% end %>
