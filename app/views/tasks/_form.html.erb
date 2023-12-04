@@ -1,36 +1,43 @@
-<%= form_with(model: task) do |form| %>
-  <% if task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+<div class="modal-body">
+  <div class="card">
+    <div class="card-body">
+      <%= form_with(model: task, remote: true) do |form| %>
+        <% if task.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
-        <% task.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+            <ul>
+              <% task.errors.each do |error| %>
+                <li><%= error.full_message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="field">
+          <%= form.label :name %>
+          <%= form.text_field :name %>
+        </div>
+
+        <div class="field">
+          <%= form.label :description %>
+          <%= form.text_area :description %>
+        </div>
+
+        <div class="field">
+          <%= form.label :status %>
+          <%= form.select :status, Task.statuses.keys.map { |k| [k.humanize, k] },prompt: 'Select Status' %>
+        </div>
+        <div class="field">
+        <%= form.label :visibility %>
+        <%= form.select :visibility, Task.visibilities.keys.map { |k| [k.humanize, k] } %>
+        </div>
+
+        <div class="actions">
+          <%= form.submit "Submit", style: 'background-color: purple; color: white; transition: background-color 0.3s ease;', onmouseover: "this.style.backgroundColor='green';", onmouseout: "this.style.backgroundColor='purple';" %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
   </div>
+</div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.text_field :status %>
-  </div>
-
-  <%= form.select :visibility, Task.visibilities.keys.map { |k| [k.humanize, k] } %>
-
-  <%= form.hidden_field :user_id %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

@@ -1,0 +1,8 @@
+$(document).ready(function() {
+    <% if @task.errors.any? %>
+    alert('Invalid Details');
+    <% else %>
+    $('#nTask').html("<%= escape_javascript(render :partial =>'tasks/mytasks', :locals => { task: @task} ) %>");
+    $('#newTaskModal').modal('hide');
+    <% end %>
+});

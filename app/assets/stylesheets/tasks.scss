@@ -1,3 +1,55 @@
-// Place all the styles related to the Tasks controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+.th, td {
+  text-align: left;
+  padding: 16px;
+}
+
+.tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.green-background {
+  background-color: green;
+  padding: 5px;
+}
+.red-background {
+  background-color: mediumpurple;
+  padding: 5px;
+}
+
+.re-background {
+  background-color: orangered;
+  padding: 5px;
+}
+.rede-background {
+  background-color: red;
+  padding: 5px;
+}
+.ye-background {
+  background-color: yellow;
+  padding: 5px;
+}
+.ge-background {
+  background-color: green;
+  padding: 5px;
+}
+h2 {
+  font-size: 24px;
+  color: #333;
+}
+
+.field label {
+  font-size: 18px;
+  color: #555;
+
+}
+
+.actions {
+  margin-top: 20px;
+}
