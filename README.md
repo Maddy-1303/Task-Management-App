@@ -5,31 +5,8 @@
 
 Task Manager is a simple Rails application designed to help users to manage their tasks by categorizing them into TODO and DONE lists. The application includes user authentication using the Devise gem, allowing users to secure their task lists and optionally make them public.
 
-Screenshots of the Application
-
-![img_1.png](img_1.png)
-Application  Home page for Guest User
-
-
-![img_2.png](img_2.png)
-Application Login Page
-
-![img.png](img.png)
-Application  Home page for Logged in User
-
-![img_3.png](img_3.png)
-To create New Task
-
-![img_4.png](img_4.png)
-
-![img_5.png](img_5.png)
-Application Show Page of the created Task
-
-![img_6.png](img_6.png)
-Application Edit Page
-
-![img_7.png](img_7.png)
-User Profile Edit Page
+Screenshots of the Application can be viewed with this link
+https://docs.google.com/document/d/1KqrZwEYhVT_KzTkmrz2HDb-BrCBFe2JKnX4RmLGydb4/edit?usp=sharing
 
 ## Features
 
